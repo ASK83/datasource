@@ -135,6 +135,11 @@ class DbField implements iDataField {
      **/
     protected $data_conversion;
 
+    /**
+     * cond_rule_format
+     * @var string
+     **/
+    protected $cond_rule_format;
 
     /**
 	 */
@@ -159,6 +164,9 @@ class DbField implements iDataField {
         $this->is_serialized = (bool)$field_data['is_serialized'];
         $this->db_table = $db_table;
         $this->data_conversion = $data_conversion;
+        if (isset($field_data['cond_rule_format'])) {
+            $this->cond_rule_format = $field_data['cond_rule_format'];
+        }
 	}
 
 	public function isKey(){
@@ -194,6 +202,7 @@ class DbField implements iDataField {
             'is_timespan' => $this->is_timespan,
             'db_field_name' => $this->db_field_name,
             'is_natural_sort' => $this->is_natural_sort,
+            'cond_rule_format' => $this->cond_rule_format
         ];
         return $ret;
     }
